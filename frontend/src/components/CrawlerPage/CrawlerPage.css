@@ -1,0 +1,58 @@
+/*form*/
+.crawler-container{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 20px;
+    transition: all 3s;
+    margin-bottom: 10%;
+}
+.crawler-container > form {
+    display: flex;
+    gap: 10px;
+}
+
+.crawler-container > form > button,
+.history-container-btn > button,
+.clear-btn-container > button
+{
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    outline: none;
+    color: var(--text-btn-color);
+    border: 1px solid  var(--border-color);
+    box-shadow: 0px 5px 7px var(--border-color) ;
+    padding: 10px;
+}
+.crawler-container > form > input{
+    min-width: 350px;
+    border: 1px solid  var(--border-color);
+    box-shadow: 0px 5px 7px var(--border-color) ;
+}
+
+.crawler-container > form > button {
+    background-color: var(--primary-color);
+}
+
+.history-container-btn  > button{
+    background-color: linear-gradient(var(--primary-color), var(--secondary-color));
+}
+
+.clear-btn-container > button{
+    background-color: var(--secondary-color);
+}
+
+/*loader*/
+.loader-container {
+    margin-top: 20%;
+}
+
+.loader-container > span:first-of-type {
+    color: var(--primary-color);
+}
+
+.loader-container > span:last-of-type {
+    color: var(--secondary-color);
+}

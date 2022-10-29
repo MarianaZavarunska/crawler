@@ -1,0 +1,8 @@
+.layout-container{
+    height:100vh;
+    background-image: url("../../../public/ukraine-gradient.jpg");
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-size:cover;
+    padding: 10px;
+}

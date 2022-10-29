@@ -1,0 +1,16 @@
+h2{
+    letter-spacing: 2px;
+    color: var(--text-btn-color);
+}
+.history-item-container {
+    text-align: left;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: var(--text-btn-color);
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.history-item-container  > li {
+    padding: 5px;
+}

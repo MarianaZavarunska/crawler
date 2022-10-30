@@ -1,6 +1,6 @@
 
 Hi, there! 
-Everything was built from scratch.
+Everything was built from the scratch.
 
 FRONTEND:
 1. added form (input for url and dropdown for depth);
@@ -12,6 +12,7 @@ FRONTEND:
 6. add loader;
 7. set up linter & prettier;
 
+
 USE: local variables; material-ui; Reactjs, TypeScript, axios;
 
 BACKEND:
@@ -20,5 +21,8 @@ BACKEND:
 3. made recursion to implemented deep scrapping with (0-2 depth);
 4. made another two breakpoints to get history;
 5. made relation between the results in case deep scrapping;
+
+To implement better deep scrapping work, the LINKS WERE FILTERED in the backend!!!
+                  YOU CAN REMOVE THIS FILTER!!!
 
 USE: Nestjs, Mongoose, Puppeteer;

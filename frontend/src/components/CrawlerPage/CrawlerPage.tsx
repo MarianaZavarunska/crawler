@@ -12,15 +12,20 @@ const CrawlerPage:FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [crawledPages, setCrawledPages] = useState<ICrawledPage[]>([]);
 
-
-    const onSubmitForm = async(url:IForm) => {
-        setIsLoading(true);
-        const {data} = await crawlService.crawlPage(url);
-        setIsLoading(false);
-        console.log("result:", data);
-        setCrawledPages([data])
-        reset();
+    const onChange = async(element:any) =>  {
+        console.log(element.target.value)
     }
+
+    const onSubmitForm = async(formData:IForm) => {
+        formData.depth = Number(formData.depth);
+        // setIsLoading(true);
+        // const {data} = await crawlService.crawlPage(formData);
+        // setIsLoading(false);
+        console.log("result:", formData);
+        // setCrawledPages([data])
+        // reset();
+    }
+
 
     const onHistory = async() => {
         setIsLoading(true);
@@ -43,6 +48,14 @@ const CrawlerPage:FC = () => {
                 <div className={"crawler-wrapper"}>
                     <div className={"crawler-container"} style={{ marginTop: (crawledPages && crawledPages.length) ? "10%": "20%"}}>
                         <form onSubmit={handleSubmit(onSubmitForm)}>
+                            <div className={"dropdown-container"}>
+                                <select  {...register("depth")} onChange={onChange}>
+                                    <option defaultChecked={true}>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+
                             <input type={"text"} {...register("url", {required: true})} placeholder="Write a url.."/>
                             <button type={"submit"}>Crawl</button>
                         </form>

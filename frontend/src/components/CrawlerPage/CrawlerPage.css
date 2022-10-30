@@ -7,10 +7,39 @@
     transition: all 3s;
     margin-bottom: 10%;
 }
+
 .crawler-container > form {
     display: flex;
     gap: 10px;
 }
+.dropdown-container{
+    position: relative;
+    display: flex;
+}
+
+.dropdown-container::before {
+    content: "Depth";
+    position: absolute;
+    top: -40%
+}
+.crawler-container > form > div >  select {
+    width: 70px;
+    text-align: center;
+    border: 1px solid  var(--border-color);
+    box-shadow: 0 5px 7px var(--border-color) ;
+}
+
+/*.crawler-container > form > select > option::before{*/
+/*    content: "depth";*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    left: 0;*/
+/*    width: 10px;*/
+/*    height:10px;*/
+/*    background-color:red;*/
+/*    z-index: 10;*/
+/*}*/
+
 
 .crawler-container > form > button,
 .history-container-btn > button,
@@ -23,13 +52,13 @@
     outline: none;
     color: var(--text-btn-color);
     border: 1px solid  var(--border-color);
-    box-shadow: 0px 5px 7px var(--border-color) ;
+    box-shadow: 0 5px 7px var(--border-color) ;
     padding: 10px;
 }
 .crawler-container > form > input{
     min-width: 350px;
     border: 1px solid  var(--border-color);
-    box-shadow: 0px 5px 7px var(--border-color) ;
+    box-shadow: 0 5px 7px var(--border-color) ;
 }
 
 .crawler-container > form > button {

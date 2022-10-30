@@ -17,13 +17,20 @@ const CrawlerPage:FC = () => {
     }
 
     const onSubmitForm = async(formData:IForm) => {
-        formData.depth = Number(formData.depth);
-        // setIsLoading(true);
-        // const {data} = await crawlService.crawlPage(formData);
-        // setIsLoading(false);
-        console.log("result:", formData);
-        // setCrawledPages([data])
-        // reset();
+        try {
+            formData.depth = Number(formData.depth);
+            setIsLoading(true);
+            const {data} = await crawlService.crawlPage(formData);
+            setIsLoading(false);
+            console.log("result:", formData);
+            setCrawledPages([data])
+            reset();
+        } catch (e) {
+          alert("Error");
+          setIsLoading(false);
+          console.log(e)
+        }
+
     }
 
 

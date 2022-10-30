@@ -3,7 +3,7 @@ import { axiosService } from "./axios.service";
 import {urls} from "../constants";
 
 export const crawlService = {
-    crawlPage: (url:IForm) => axiosService.post<ICrawledPage>(urls.crawl, url),
+    crawlPage: (formData:IForm) => axiosService.post<ICrawledPage>(urls.crawl, formData),
     getHistory: () => axiosService.get<ICrawledPage[]>(urls.history),
 }
 

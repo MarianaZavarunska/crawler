@@ -53,13 +53,16 @@ export class CrawlerService {
 
             if(depth > 0) {
                 for (const link of response.links) {
-                    await this.crawlPage(link, depth - 1, response["_id"]);
+                    if(link.includes("https://")) {
+                        await this.crawlPage(link, depth - 1, response["_id"]);
+                    }
                 }
             }
             return response;
         } catch (e) {
             // better to create exception filter to catch all types of exceptions;
             throw new Error(`${e.message}`)
+            // throw new HttpException(`${e.message}`, HttpStatus.BAD_REQUEST);
         }
 
     }

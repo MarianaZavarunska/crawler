@@ -10,10 +10,12 @@ import {TableComponent} from "../Table/Table";
 const CrawlerPage:FC = () => {
     const {register, handleSubmit, reset} = useForm<IForm>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [crawledPages, setCrawledPages] = useState<ICrawledPage[]>([]);
+    const [depth, setDepth] = useState<number>(0);
+    const [crawledPagesData, setCrawledPagesData] = useState<{crawledPages: ICrawledPage[], depth: number}>({crawledPages:[], depth: 0});
+
 
     const onChange = async(element:any) =>  {
-        console.log(element.target.value)
+        setDepth(element.target.value as number);
     }
 
     const onSubmitForm = async(formData:IForm) => {
@@ -22,13 +24,11 @@ const CrawlerPage:FC = () => {
             setIsLoading(true);
             const {data} = await crawlService.crawlPage(formData);
             setIsLoading(false);
-            console.log("result:", formData);
-            setCrawledPages([data])
+            setCrawledPagesData({ crawledPages: [data], depth: 0});
             reset();
         } catch (e) {
           alert("Error");
           setIsLoading(false);
-          console.log(e)
         }
 
     }
@@ -37,12 +37,13 @@ const CrawlerPage:FC = () => {
     const onHistory = async() => {
         setIsLoading(true);
         const {data} = await crawlService.getHistory();
-        setCrawledPages(data);
+        setCrawledPagesData({crawledPages: data, depth});
         setIsLoading(false);
+
     }
 
     const onClear = () => {
-        setCrawledPages([]);
+        setCrawledPagesData({crawledPages:[], depth: 0});
     }
 
     return (
@@ -53,7 +54,9 @@ const CrawlerPage:FC = () => {
                     <CircularProgress size={100}/>
                 </div> :
                 <div className={"crawler-wrapper"}>
-                    <div className={"crawler-container"} style={{ marginTop: (crawledPages && crawledPages.length) ? "10%": "20%"}}>
+                    <div className={"crawler-container"} style={{ marginTop:
+                            (crawledPagesData.crawledPages && crawledPagesData.crawledPages.length) ? "10%": "20%"
+                    }}>
                         <form onSubmit={handleSubmit(onSubmitForm)}>
                             <div className={"dropdown-container"}>
                                 <select  {...register("depth")} onChange={onChange}>
@@ -75,8 +78,8 @@ const CrawlerPage:FC = () => {
                             <button onClick={() => onClear()}>Clear</button>
                         </div>
                     </div>
-                    {(crawledPages && crawledPages.length > 0) &&
-                          <TableComponent crawledPages={crawledPages}/>
+                    {(crawledPagesData.crawledPages && crawledPagesData.crawledPages.length > 0) &&
+                          <TableComponent crawledPagesData={crawledPagesData}/>
                     }
                 </div>
             }

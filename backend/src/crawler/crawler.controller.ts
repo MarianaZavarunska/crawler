@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 
 import {CrawlerService} from "./crawler.service";
 import {CreatePageDto} from "./dto";
@@ -17,7 +17,11 @@ export class CrawlerController {
         return this.crawlerService.crawlPage(page.url, page.depth);
     }
 
+    @Get("historyByParentID/:parentID")
+    async getHistoryByParentID( @Param() params: {parentID: string}) {
 
+        return this.crawlerService.getHistoryByParentID(params.parentID);
+    }
 }
 
 

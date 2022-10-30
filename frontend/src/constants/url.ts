@@ -5,4 +5,5 @@ export default baseURL;
 export const urls = {
     crawl: "crawl",
     history: "history",
+    historyByParentID: "historyByParentID",
 }

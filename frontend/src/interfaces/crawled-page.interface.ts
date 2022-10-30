@@ -8,4 +8,6 @@ export interface ICrawledPage {
     createdAt: string;
     updatedAt: string;
     _id:string;
+    parentID:string;
+    depth: number;
 }

@@ -49,7 +49,7 @@ export class CrawlerService {
 
             await browser.close();
 
-            const response = await this.crawlerRepository.create(crawledObj, url, parentID);
+            const response = await this.crawlerRepository.create(crawledObj, url, parentID, depth);
 
             if(depth > 0) {
                 for (const link of response.links) {
@@ -69,6 +69,10 @@ export class CrawlerService {
 
     async getHistory() {
         return this.crawlerRepository.getAll();
+    }
+
+    async getHistoryByParentID(parentID: string) {
+        return this.crawlerRepository.getAllByParentID(parentID);
     }
 }
 

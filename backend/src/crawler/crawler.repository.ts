@@ -9,7 +9,7 @@ import {CrawlerObjDto} from "./dto";
 export class CrawlerRepository {
     constructor(@InjectModel(Crawler.name) private crawlerModel: Model<CrawlerDocument>) {}
 
-    async create(crawlerObj: CrawlerObjDto , url: string, parentID: string): Promise<Crawler> {
+    async create(crawlerObj: CrawlerObjDto , url: string, parentID: string, depth: number): Promise<Crawler> {
         const newUrl = await this.crawlerModel.create(
             {
                 url,
@@ -19,6 +19,7 @@ export class CrawlerRepository {
                 h2: crawlerObj.h2,
                 links: crawlerObj.a,
                 parentID,
+                depth,
             }
         )
         return newUrl.save();
@@ -28,4 +29,7 @@ export class CrawlerRepository {
         return this.crawlerModel.find()
     }
 
+    async getAllByParentID(parentID: string) {
+        return this.crawlerModel.find().where({parentID});
+    }
 }

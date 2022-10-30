@@ -27,6 +27,9 @@ export class Crawler {
     @Prop({default: null})
     parentID: string;
 
+    @Prop()
+    depth: number;
+
     @Prop({default: now()})
     createdAt: Date;
 

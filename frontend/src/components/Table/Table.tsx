@@ -17,6 +17,7 @@ const tableObj:Partial<ICrawledPage> = {
     h1:[],
     h2:[],
     links:[],
+    depth: 0,
     createdAt: ""
 }
 
@@ -42,7 +43,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 interface IProps {
-    crawledPages: ICrawledPage[];
+    crawledPagesData: {crawledPages: ICrawledPage[], depth: number};
 }
 
 const TableComponent:FC<IProps> = (props) => {
@@ -58,18 +59,19 @@ const TableComponent:FC<IProps> = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                        {props.crawledPages
+                        {props.crawledPagesData.crawledPages
                             .map((row, index) => (
                             <StyledTableRow key={"row-" + index}>
                                 {
                                     Object.entries(row)
-                                        .filter(col => col[0] in tableObj)
+                                        .filter(col => col[0] in tableObj && (props.crawledPagesData.depth === 0 ? !row.parentID : row.parentID))
                                         .map((cell, cellIndex) => (
                                         <StyledTableCell key={"cell-" + cellIndex} align="right">
-                                            {cell[0] === "url"? cell[1] :
+                                            { (cell[0] === "url" || cell[0] === "depth") ? cell[1] :
                                                     cell[0] === "createdAt"? new Date(cell[1]).toUTCString() :
-                                                        <NavLink to={{pathname: `history/${row["_id"]}/${cell[0]}`}}
-                                                                 state= {{ value : cell[1] }}>
+                                                        !cell[1].length ? cell[1].length :
+                                                        <NavLink to={{pathname: `/history/${row["_id"]}/${cell[0]}`}}
+                                                                 state= {{ value : cell[1], parentID: row["_id"], depth: props.crawledPagesData.depth + 1}}>
                                                             {cell[1].length}
                                                         </NavLink>
                                             }

@@ -40,7 +40,7 @@ export class CrawlerService {
                         {
                             result[selector] = listOfElements.map(anchor => {
                                 return anchor.getAttribute('href');
-                            }).filter(item => !!item && item.indexOf('javascript:void(0)') < 0);
+                            }).filter(item => !!item);
                         } break;
                     }
                 })

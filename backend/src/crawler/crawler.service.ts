@@ -1,4 +1,5 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
+import { link } from 'fs';
 import puppeteer from 'puppeteer';
 
 import {CrawlerRepository} from "./crawler.repository";
@@ -9,7 +10,7 @@ import {CrawlerObjDto} from "./dto";
 export class CrawlerService {
     constructor(private crawlerRepository: CrawlerRepository) {}
 
-    async crawlPage(url: string) {
+    async crawlPage(url: string, depth: number, parentID = null) {
         try {
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
@@ -47,7 +48,15 @@ export class CrawlerService {
             })
 
             await browser.close();
-            return this.crawlerRepository.create(crawledObj, url);
+
+            const response = await this.crawlerRepository.create(crawledObj, url, parentID);
+
+            if(depth > 0) {
+                for (const link of response.links) {
+                    await this.crawlPage(link, depth - 1, response["_id"]);
+                }
+            }
+            return response;
         } catch (e) {
             // better to create exception filter to catch all types of exceptions;
             throw new Error(`${e.message}`)

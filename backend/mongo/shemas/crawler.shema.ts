@@ -24,6 +24,9 @@ export class Crawler {
     @Prop()
     links: string[];
 
+    @Prop({default: null})
+    parentID: string;
+
     @Prop({default: now()})
     createdAt: Date;
 

@@ -14,7 +14,7 @@ export class CrawlerController {
 
     @Post("crawl")
     async createUrl( @Body() page: CreatePageDto) {
-        return this.crawlerService.crawlPage(page.url)
+        return this.crawlerService.crawlPage(page.url, page.depth);
     }
 
 

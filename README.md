@@ -9,7 +9,8 @@ FRONTEND:
 4. showed all results in the table(count crawledData), and to see, exactly,
    what was found in the page, I use list component;
 5. implemented the logic of depth and showing the result;
-6. set up linter & prettier;
+6. add loader;
+7. set up linter & prettier;
 
 USE: local variables; material-ui; Reactjs, TypeScript, axios;
 

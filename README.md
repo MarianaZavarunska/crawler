@@ -28,8 +28,9 @@ To implement better deep scrapping work, the LINKS WERE FILTERED in the backend!
 USE: Nestjs, Mongoose, Puppeteer;
 
 Tested links:
-1. https://metatags.io/;
-2. http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm;
-3. https://www.w3schools.com/;
-4. https://forkify-v2.netlify.app/;
-5. 
+1. https://keepshoppers.com/;
+2. https://metatags.io/;
+3. http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm;
+4. https://www.w3schools.com/;
+5. https://forkify-v2.netlify.app/;
+

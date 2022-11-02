@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  app:
+    image: backend
+    container_name: crawler-backend
+    env_file:
+      - backend/.env
+    ports:
+      - "5550:5200"
+      - "9229:9229"
+    restart: on-failure
+    command: npm run start:dev
+
+  db:
+    image: mongo:5.0.0
+    container_name: server-mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME="user"
+      - MONGO_INITDB_ROOT_PASSWORD="password"
+    ports:
+      - "27017:27017"
+    restart: on-failure
+networks:
+  server-network:
+
+

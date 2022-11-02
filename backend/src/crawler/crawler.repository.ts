@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import {Crawler, CrawlerDocument} from "../../mongo/shemas/crawler.shema";
+import {Crawler, CrawlerDocument} from "../mongo/shemas/crawler.shema";
 import {Model} from "mongoose";
 
 import {CrawlerObjDto} from "./dto";

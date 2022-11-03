@@ -34,3 +34,9 @@ Tested links:
 4. https://www.w3schools.com/;
 5. https://forkify-v2.netlify.app/;
 
+DOCKER 
+to build images -> go to cd backend/frontend -> sudo docker build -t frontend/backend .  -> imaga's name frontend/backend;
+to docker login -> docker login -u <username> -p <password>;
+to build docker container and compose -> sudo docker compose up (sudo docker compose up <sevice's name>);
+
+
